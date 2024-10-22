@@ -1,0 +1,974 @@
+
+<!-- saved from url=(0056)file:///C:/Users/necroz/Downloads/GFTUjuBsGkbC5KMFw.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="https://mitiendadeabarrotes.com/">--><base href=".">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Administrativo Avanzado de Abarrotes</title>
+<link rel="stylesheet" href="./index_files/all.min.css">
+<style>
+  :root {
+    --primary-color: #FF9800;
+    --secondary-color: #F57C00;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --border-color: #ddd;
+    --header-color: #424242;
+    --nav-color: #616161;
+  }
+
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  header {
+    background-color: var(--header-color);
+    color: white;
+    text-align: center;
+    padding: 1em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  nav {
+    background-color: var(--nav-color);
+    color: white;
+    padding: 10px;
+  }
+
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  nav ul li a:hover {
+    background-color: var(--secondary-color);
+  }
+
+  .content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(20px);
+  }
+
+  .content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  nav ul li a.active {
+    background-color: var(--secondary-color);
+  }
+
+  .content {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+
+  input[type="text"], input[type="number"], input[type="email"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s, transform 0.1s;
+  }
+
+  button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-content {
+    background-color: var(--background-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #graficaVentas {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+
+  #proveedoresTabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  #proveedoresTabla th, #proveedoresTabla td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+  }
+
+  #proveedoresTabla th {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  #proveedoresTabla tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .icon-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .action-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+  }
+
+  .action-button:hover {
+    color: var(--primary-color);
+  }
+
+  .tab-link i {
+    font-size: 1.2em;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Sistema Administrativo Avanzado de Abarrotes</h1>
+  </header>
+  
+  <nav>
+    <ul>
+      <li><a href="https://mitiendadeabarrotes.com/#inventario" class="tab-link active" data-tab="inventario"><i class="fas fa-box"></i> Inventario</a></li>
+      <li><a href="https://mitiendadeabarrotes.com/#ventas" class="tab-link" data-tab="ventas"><i class="fas fa-cash-register"></i> Ventas</a></li>
+      <li><a href="https://mitiendadeabarrotes.com/#clientes" class="tab-link" data-tab="clientes"><i class="fas fa-users"></i> Clientes</a></li>
+      <li><a href="https://mitiendadeabarrotes.com/#proveedores" class="tab-link" data-tab="proveedores"><i class="fas fa-truck"></i> Proveedores</a></li>
+      <li><a href="https://mitiendadeabarrotes.com/#reportes" class="tab-link" data-tab="reportes"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div id="inventario" class="content active">
+      <h2>Inventario</h2>
+      <table id="inventarioTabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+          <td>1</td>
+          <td>Arroz</td>
+          <td>Granos</td>
+          <td>50</td>
+          <td>$2.50</td>
+          <td>
+            <button onclick="editarProducto(1)" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarProducto(1)" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr><tr>
+          <td>2</td>
+          <td>Frijoles</td>
+          <td>Granos</td>
+          <td>30</td>
+          <td>$1.80</td>
+          <td>
+            <button onclick="editarProducto(2)" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarProducto(2)" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr><tr>
+          <td>3</td>
+          <td>Azúcar</td>
+          <td>Endulzantes</td>
+          <td>40</td>
+          <td>$1.20</td>
+          <td>
+            <button onclick="editarProducto(3)" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarProducto(3)" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr></tbody>
+      </table>
+      <button onclick="mostrarModal(&#39;agregarProductoModal&#39;)" class="icon-button"><i class="fas fa-plus"></i> Agregar Producto</button>
+    </div>
+
+    <div id="ventas" class="content">
+      <h2>Registro de Ventas</h2>
+      <form id="registroVentaForm">
+        <div class="form-group">
+          <label for="clienteVenta">Cliente:</label>
+          <select id="clienteVenta" required=""><option value="1">Juan Pérez</option><option value="2">María García</option></select>
+        </div>
+        <div class="form-group">
+          <label for="productoVenta">Producto:</label>
+          <select id="productoVenta" required=""><option value="1">Arroz - $2.50</option><option value="2">Frijoles - $1.80</option><option value="3">Azúcar - $1.20</option></select>
+        </div>
+        <div class="form-group">
+          <label for="cantidadVenta">Cantidad:</label>
+          <input type="number" id="cantidadVenta" required="" min="1">
+        </div>
+        <button type="submit" class="icon-button"><i class="fas fa-check"></i> Registrar Venta</button>
+      </form>
+      <h3>Últimas Ventas</h3>
+      <table id="ventasTabla">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="graficaVentas">
+        <canvas id="graficaVentasCanvas" style="box-sizing: border-box; display: block; height: 0px; width: 0px;" width="0" height="0"></canvas>
+      </div>
+    </div>
+
+    <div id="clientes" class="content">
+      <h2>Gestión de Clientes</h2>
+      <table id="clientesTabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+          <td>1</td>
+          <td>Juan Pérez</td>
+          <td>juan@example.com</td>
+          <td>123-456-7890</td>
+          <td>
+            <button onclick="editarCliente(1)" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarCliente(1)" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr><tr>
+          <td>2</td>
+          <td>María García</td>
+          <td>maria@example.com</td>
+          <td>098-765-4321</td>
+          <td>
+            <button onclick="editarCliente(2)" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarCliente(2)" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr></tbody>
+      </table>
+      <button onclick="mostrarModal(&#39;agregarClienteModal&#39;)" class="icon-button"><i class="fas fa-user-plus"></i> Agregar Cliente</button>
+    </div>
+
+    <div id="proveedores" class="content">
+      <h2>Gestión de Proveedores</h2>
+      <table id="proveedoresTabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Producto Principal</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+          <td>1</td>
+          <td>Distribuidor A</td>
+          <td>distribuidora@example.com</td>
+          <td>111-222-3333</td>
+          <td>Abarrotes varios</td>
+          <td>
+            <button onclick="editarProveedor(1)" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarProveedor(1)" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr><tr>
+          <td>2</td>
+          <td>Frutas y Verduras B</td>
+          <td>frutasb@example.com</td>
+          <td>444-555-6666</td>
+          <td>Frutas frescas</td>
+          <td>
+            <button onclick="editarProveedor(2)" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarProveedor(2)" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        </tr></tbody>
+      </table>
+      <button onclick="mostrarModal(&#39;agregarProveedorModal&#39;)" class="icon-button"><i class="fas fa-truck"></i> Agregar Proveedor</button>
+      <button onclick="mostrarModal(&#39;agregarProductoProveedorModal&#39;)" class="icon-button"><i class="fas fa-box-open"></i> Agregar Producto de Proveedor</button>
+      <h3>Facturas de Proveedores</h3>
+      <table id="facturasProveedoresTabla">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Proveedor</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Costo Total</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal para agregar producto -->
+  <div id="agregarProductoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal(&#39;agregarProductoModal&#39;)">×</span>
+      <h2>Agregar Producto</h2>
+      <form id="agregarProductoForm">
+        <div class="form-group">
+          <label for="nombreProducto">Nombre del Producto:</label>
+          <input type="text" id="nombreProducto" required="">
+        </div>
+        <div class="form-group">
+          <label for="categoriaProducto">Categoría:</label>
+          <input type="text" id="categoriaProducto" required="">
+        </div>
+        <div class="form-group">
+          <label for="cantidadProducto">Cantidad:</label>
+          <input type="number" id="cantidadProducto" required="" min="0">
+        </div>
+        <div class="form-group">
+          <label for="precioProducto">Precio:</label>
+          <input type="number" id="precioProducto" step="0.01" required="" min="0">
+        </div>
+        <button type="submit" class="icon-button"><i class="fas fa-plus"></i> Agregar Producto</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para agregar cliente -->
+  <div id="agregarClienteModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal(&#39;agregarClienteModal&#39;)">×</span>
+      <h2>Agregar Cliente</h2>
+      <form id="agregarClienteForm">
+        <div class="form-group">
+          <label for="nombreCliente">Nombre del Cliente:</label>
+          <input type="text" id="nombreCliente" required="">
+        </div>
+        <div class="form-group">
+          <label for="emailCliente">Email:</label>
+          <input type="email" id="emailCliente" required="">
+        </div>
+        <div class="form-group">
+          <label for="telefonoCliente">Teléfono:</label>
+          <input type="text" id="telefonoCliente" required="">
+        </div>
+        <button type="submit" class="icon-button"><i class="fas fa-user-plus"></i> Agregar Cliente</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para agregar proveedor -->
+  <div id="agregarProveedorModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal(&#39;agregarProveedorModal&#39;)">×</span>
+      <h2>Agregar Proveedor</h2>
+      <form id="agregarProveedorForm">
+        <div class="form-group">
+          <label for="nombreProveedor">Nombre del Proveedor:</label>
+          <input type="text" id="nombreProveedor" required="">
+        </div>
+        <div class="form-group">
+          <label for="emailProveedor">Email:</label>
+          <input type="email" id="emailProveedor" required="">
+        </div>
+        <div class="form-group">
+          <label for="telefonoProveedor">Teléfono:</label>
+          <input type="text" id="telefonoProveedor" required="">
+        </div>
+        <div class="form-group">
+          <label for="productoPrincipalProveedor">Producto Principal:</label>
+          <input type="text" id="productoPrincipalProveedor" required="">
+        </div>
+        <button type="submit" class="icon-button"><i class="fas fa-truck"></i> Agregar Proveedor</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para agregar producto de proveedor -->
+  <div id="agregarProductoProveedorModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal(&#39;agregarProductoProveedorModal&#39;)">×</span>
+      <h2>Agregar Producto de Proveedor</h2>
+      <form id="agregarProductoProveedorForm">
+        <div class="form-group">
+          <label for="proveedorProducto">Proveedor:</label>
+          <select id="proveedorProducto" required=""><option value="1">Distribuidor A</option><option value="2">Frutas y Verduras B</option></select>
+        </div>
+        <div class="form-group">
+          <label for="nombreProductoProveedor">Nombre del Producto:</label>
+          <input type="text" id="nombreProductoProveedor" required="">
+        </div>
+        <div class="form-group">
+          <label for="categoriaProductoProveedor">Categoría:</label>
+          <input type="text" id="categoriaProductoProveedor" required="">
+        </div>
+        <div class="form-group">
+          <label for="cantidadProductoProveedor">Cantidad:</label>
+          <input type="number" id="cantidadProductoProveedor" required="" min="1">
+        </div>
+        <div class="form-group">
+          <label for="costoProductoProveedor">Costo por unidad:</label>
+          <input type="number" id="costoProductoProveedor" step="0.01" required="" min="0">
+        </div>
+        <div class="form-group">
+          <label for="margenGananciaProductoProveedor">Margen de Ganancia (%):</label>
+          <input type="number" id="margenGananciaProductoProveedor" required="" min="0" max="100">
+        </div>
+        <button type="submit" class="icon-button"><i class="fas fa-plus"></i> Agregar Producto</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./index_files/chart.js.descargar"></script>
+  <script>
+    let inventario = [
+      { id: 1, nombre: "Arroz", categoria: "Granos", cantidad: 50, precio: 2.5 },
+      { id: 2, nombre: "Frijoles", categoria: "Granos", cantidad: 30, precio: 1.8 },
+      { id: 3, nombre: "Azúcar", categoria: "Endulzantes", cantidad: 40, precio: 1.2 }
+    ];
+
+    let clientes = [
+      { id: 1, nombre: "Juan Pérez", email: "juan@example.com", telefono: "123-456-7890" },
+      { id: 2, nombre: "María García", email: "maria@example.com", telefono: "098-765-4321" }
+    ];
+
+    let proveedores = [
+      { id: 1, nombre: "Distribuidor A", email: "distribuidora@example.com", telefono: "111-222-3333", productoPrincipal: "Abarrotes varios", productos: [] },
+      { id: 2, nombre: "Frutas y Verduras B", email: "frutasb@example.com", telefono: "444-555-6666", productoPrincipal: "Frutas frescas", productos: [] }
+    ];
+
+    let ventas = [];
+    let facturasProveedores = [];
+
+    function mostrarModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    function actualizarTablaInventario() {
+      const tbody = document.querySelector('#inventarioTabla tbody');
+      tbody.innerHTML = '';
+      inventario.forEach(producto => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${producto.id}</td>
+          <td>${producto.nombre}</td>
+          <td>${producto.categoria}</td>
+          <td>${producto.cantidad}</td>
+          <td>$${producto.precio.toFixed(2)}</td>
+          <td>
+            <button onclick="editarProducto(${producto.id})" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarProducto(${producto.id})" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function agregarProducto(evento) {
+      evento.preventDefault();
+      const nuevoProducto = {
+        id: inventario.length + 1,
+        nombre: document.getElementById('nombreProducto').value,
+        categoria: document.getElementById('categoriaProducto').value,
+        cantidad: parseInt(document.getElementById('cantidadProducto').value),
+        precio: parseFloat(document.getElementById('precioProducto').value)
+      };
+      inventario.push(nuevoProducto);
+      actualizarTablaInventario();
+      cerrarModal('agregarProductoModal');
+      evento.target.reset();
+    }
+
+    function editarProducto(id) {
+      const producto = inventario.find(p => p.id === id);
+      if (producto) {
+        const nuevaCantidad = prompt(`Nueva cantidad para ${producto.nombre}:`, producto.cantidad);
+        if (nuevaCantidad !== null) {
+          producto.cantidad = parseInt(nuevaCantidad);
+          actualizarTablaInventario();
+        }
+      }
+    }
+
+    function eliminarProducto(id) {
+      if (confirm('¿Está seguro de que desea eliminar este producto?')) {
+        inventario = inventario.filter(p => p.id !== id);
+        actualizarTablaInventario();
+      }
+    }
+
+    function actualizarTablaClientes() {
+      const tbody = document.querySelector('#clientesTabla tbody');
+      tbody.innerHTML = '';
+      clientes.forEach(cliente => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${cliente.id}</td>
+          <td>${cliente.nombre}</td>
+          <td>${cliente.email}</td>
+          <td>${cliente.telefono}</td>
+          <td>
+            <button onclick="editarCliente(${cliente.id})" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarCliente(${cliente.id})" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function agregarCliente(evento) {
+      evento.preventDefault();
+      const nuevoCliente = {
+        id: clientes.length + 1,
+        nombre: document.getElementById('nombreCliente').value,
+        email: document.getElementById('emailCliente').value,
+        telefono: document.getElementById('telefonoCliente').value
+      };
+      clientes.push(nuevoCliente);
+      actualizarTablaClientes();
+      cerrarModal('agregarClienteModal');
+      evento.target.reset();
+    }
+
+    function editarCliente(id) {
+      const cliente = clientes.find(c => c.id === id);
+      if (cliente) {
+        const nuevoNombre = prompt(`Nuevo nombre para ${cliente.nombre}:`, cliente.nombre);
+        if (nuevoNombre !== null) {
+          cliente.nombre = nuevoNombre;
+          actualizarTablaClientes();
+        }
+      }
+    }
+
+    function eliminarCliente(id) {
+      if (confirm('¿Está seguro de que desea eliminar este cliente?')) {
+        clientes = clientes.filter(c => c.id !== id);
+        actualizarTablaClientes();
+      }
+    }
+
+    function actualizarTablaProveedores() {
+      const tbody = document.querySelector('#proveedoresTabla tbody');
+      tbody.innerHTML = '';
+      proveedores.forEach(proveedor => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${proveedor.id}</td>
+          <td>${proveedor.nombre}</td>
+          <td>${proveedor.email}</td>
+          <td>${proveedor.telefono}</td>
+          <td>${proveedor.productoPrincipal}</td>
+          <td>
+            <button onclick="editarProveedor(${proveedor.id})" class="action-button"><i class="fas fa-edit"></i></button>
+            <button onclick="eliminarProveedor(${proveedor.id})" class="action-button"><i class="fas fa-trash-alt"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function agregarProveedor(evento) {
+      evento.preventDefault();
+      const nuevoProveedor = {
+        id: proveedores.length + 1,
+        nombre: document.getElementById('nombreProveedor').value,
+        email: document.getElementById('emailProveedor').value,
+        telefono: document.getElementById('telefonoProveedor').value,
+        productoPrincipal: document.getElementById('productoPrincipalProveedor').value,
+        productos: []
+      };
+      proveedores.push(nuevoProveedor);
+      actualizarTablaProveedores();
+      actualizarSelectProveedores();
+      cerrarModal('agregarProveedorModal');
+      evento.target.reset();
+    }
+
+    function editarProveedor(id) {
+      const proveedor = proveedores.find(p => p.id === id);
+      if (proveedor) {
+        const nuevoNombre = prompt(`Nuevo nombre para ${proveedor.nombre}:`, proveedor.nombre);
+        if (nuevoNombre !== null) {
+          proveedor.nombre = nuevoNombre;
+          actualizarTablaProveedores();
+        }
+      }
+    }
+
+    function eliminarProveedor(id) {
+      if (confirm('¿Está seguro de que desea eliminar este proveedor?')) {
+        proveedores = proveedores.filter(p => p.id !== id);
+        actualizarTablaProveedores();
+      }
+    }
+
+    function agregarProductoProveedor(evento) {
+      evento.preventDefault();
+      const proveedorId = parseInt(document.getElementById('proveedorProducto').value);
+      const proveedor = proveedores.find(p => p.id === proveedorId);
+      
+      if (proveedor) {
+        const nuevoProducto = {
+          id: inventario.length + 1,
+          nombre: document.getElementById('nombreProductoProveedor').value,
+          categoria: document.getElementById('categoriaProductoProveedor').value,
+          cantidad: parseInt(document.getElementById('cantidadProductoProveedor').value),
+          costo: parseFloat(document.getElementById('costoProductoProveedor').value),
+          margenGanancia: parseFloat(document.getElementById('margenGananciaProductoProveedor').value),
+          precio: calcularPrecioVenta(
+            parseFloat(document.getElementById('costoProductoProveedor').value),
+            parseFloat(document.getElementById('margenGananciaProductoProveedor').value)
+          )
+        };
+        
+        inventario.push(nuevoProducto);
+        proveedor.productos.push(nuevoProducto);
+        
+        const nuevaFactura = {
+          fecha: new Date().toLocaleString(),
+          proveedor: proveedor.nombre,
+          producto: nuevoProducto.nombre,
+          cantidad: nuevoProducto.cantidad,
+          costoTotal: nuevoProducto.costo * nuevoProducto.cantidad
+        };
+        facturasProveedores.push(nuevaFactura);
+        
+        actualizarTablaInventario();
+        actualizarTablaFacturasProveedores();
+        cerrarModal('agregarProductoProveedorModal');
+        evento.target.reset();
+      } else {
+        alert('Proveedor no encontrado');
+      }
+    }
+
+    function calcularPrecioVenta(costo, margenGanancia) {
+      return costo * (1 + margenGanancia / 100);
+    }
+
+    function actualizarTablaFacturasProveedores() {
+      const tbody = document.querySelector('#facturasProveedoresTabla tbody');
+      tbody.innerHTML = '';
+      facturasProveedores.forEach(factura => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${factura.fecha}</td>
+          <td>${factura.proveedor}</td>
+          <td>${factura.producto}</td>
+          <td>${factura.cantidad}</td>
+          <td>$${factura.costoTotal.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function actualizarSelectProveedores() {
+      const select = document.getElementById('proveedorProducto');
+      select.innerHTML = '';
+      proveedores.forEach(proveedor => {
+        const option = document.createElement('option');
+        option.value = proveedor.id;
+        option.textContent = proveedor.nombre;
+        select.appendChild(option);
+      });
+    }
+
+    function actualizarTablaVentas() {
+      const tbody = document.querySelector('#ventasTabla tbody');
+      tbody.innerHTML = '';
+      ventas.slice(-5).forEach(venta => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${venta.fecha}</td>
+          <td>${venta.cliente}</td>
+          <td>${venta.producto}</td>
+          <td>${venta.cantidad}</td>
+          <td>$${venta.total.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      actualizarGraficaVentas();
+    }
+
+    function registrarVenta(evento) {
+      evento.preventDefault();
+      const clienteId = parseInt(document.getElementById('clienteVenta').value);
+      const productoId = parseInt(document.getElementById('productoVenta').value);
+      const cantidad = parseInt(document.getElementById('cantidadVenta').value);
+      
+      const cliente = clientes.find(c => c.id === clienteId);
+      const producto = inventario.find(p => p.id === productoId);
+      
+      if (producto && producto.cantidad >= cantidad) {
+        producto.cantidad -= cantidad;
+        const venta = {
+          fecha: new Date().toLocaleString(),
+          cliente: cliente.nombre,
+          producto: producto.nombre,
+          cantidad: cantidad,
+          total: producto.precio * cantidad
+        };
+        ventas.push(venta);
+        actualizarTablaVentas();
+        actualizarTablaInventario();
+        evento.target.reset();
+      } else {
+        alert('No hay suficiente stock para realizar esta venta.');
+      }
+    }
+
+    function actualizarSelectProductos() {
+      const select = document.getElementById('productoVenta');
+      select.innerHTML = '';
+      inventario.forEach(producto => {
+        const option = document.createElement('option');
+        option.value = producto.id;
+        option.textContent = `${producto.nombre} - $${producto.precio.toFixed(2)}`;
+        select.appendChild(option);
+      });
+    }
+
+    function actualizarSelectClientes() {
+      const select = document.getElementById('clienteVenta');
+      select.innerHTML = '';
+      clientes.forEach(cliente => {
+        const option = document.createElement('option');
+        option.value = cliente.id;
+        option.textContent = cliente.nombre;
+        select.appendChild(option);
+      });
+    }
+
+    function actualizarGraficaVentas() {
+      const canvas = document.getElementById('graficaVentasCanvas');
+      if (!canvas) {
+        console.error('Canvas element not found');
+        return;
+      }
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        console.error('Unable to get 2D context for canvas');
+        return;
+      }
+
+      const ventasPorProducto = ventas.reduce((acc, venta) => {
+        if (!acc[venta.producto]) {
+          acc[venta.producto] = 0;
+        }
+        acc[venta.producto] += venta.total;
+        return acc;
+      }, {});
+
+      if (window.ventasChart instanceof Chart) {
+        window.ventasChart.destroy();
+      }
+
+      window.ventasChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(ventasPorProducto),
+          datasets: [{
+            label: 'Ventas por Producto',
+            data: Object.values(ventasPorProducto),
+            backgroundColor: 'rgba(255, 152, 0, 0.6)',
+            borderColor: 'rgba(245, 124, 0, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Total de Ventas ($)'
+              }
+            }
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: 'Ventas Totales por Producto'
+            }
+          }
+        }
+      });
+    }
+
+    function setupTabNavigation() {
+      const tabLinks = document.querySelectorAll('.tab-link');
+      const contentDivs = document.querySelectorAll('.content');
+
+      tabLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const tabId = link.getAttribute('data-tab');
+
+          tabLinks.forEach(tl => tl.classList.remove('active'));
+          contentDivs.forEach(cd => {
+            cd.classList.remove('active');
+            cd.style.opacity = '0';
+            cd.style.transform = 'translateY(20px)';
+          });
+
+          link.classList.add('active');
+          const activeContent = document.getElementById(tabId);
+          activeContent.classList.add('active');
+          setTimeout(() => {
+            activeContent.style.opacity = '1';
+            activeContent.style.transform = 'translateY(0)';
+          }, 50);
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      actualizarTablaInventario();
+      actualizarTablaClientes();
+      actualizarTablaVentas();
+      actualizarTablaProveedores();
+      actualizarSelectProductos();
+      actualizarSelectClientes();
+      actualizarTablaFacturasProveedores();
+      actualizarSelectProveedores();
+      setupTabNavigation();
+
+      setTimeout(actualizarGraficaVentas, 100);
+
+      window.onclick = function(event) {
+        if (event.target.className === 'modal') {
+          event.target.style.display = "none";
+        }
+      }
+
+      document.getElementById('agregarProductoForm').addEventListener('submit', agregarProducto);
+      document.getElementById('agregarClienteForm').addEventListener('submit', agregarCliente);
+      document.getElementById('registroVentaForm').addEventListener('submit', registrarVenta);
+      document.getElementById('agregarProveedorForm').addEventListener('submit', agregarProveedor);
+      document.getElementById('agregarProductoProveedorForm').addEventListener('submit', agregarProductoProveedor);
+    });
+  </script>
+
+</body></html>
